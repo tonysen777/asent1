@@ -1,7 +1,9 @@
-name: Validate public gateway
+name: Validate public AsenT1 Skill
 on:
   push:
   pull_request:
+permissions:
+  contents: read
 jobs:
   validate:
     runs-on: ubuntu-latest
