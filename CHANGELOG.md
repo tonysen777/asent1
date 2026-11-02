@@ -1,8 +1,9 @@
 # Changelog
 
-## AsenT1 Gateway 0.1.0-preview
+## AsenT1 Public Skill 1.0.0
 
-- Establish public thin-client Skill entry.
-- Define remote MCP tool contract.
-- Separate public gateway from private execution core.
-- Mark MCP endpoint as not yet deployed.
+- Replaced the non-functional MCP gateway placeholder with a self-contained Claude Skill.
+- Added production reading, director design, prompt compilation, independent Unit, preflight and targeted repair workflows.
+- Added direct Claude Managed Agents GitHub repository mounting instructions.
+- Clarified that no private repository or AsenT1 MCP server is required for the public Skill.
+- Kept private core archives, raw tutorials and unverified third-party materials out of the public repository.
