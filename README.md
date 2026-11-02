@@ -1,36 +1,49 @@
-# AsenT1 — Free AI Director Skill Gateway
+# AsenT1 — Free AI Director Skill
 
-AsenT1 是一个面向 AI 视频制作者的免费导演工作流入口。公开仓库只提供轻量客户端 Skill、连接说明和工具协议；**不包含 AsenT1 私有核心规则、内部参考资料、提示词模板库或研究归档**。
+AsenT1 is a free, public Claude Skill for AI-video creators. It provides a structured director workflow for script reading, director design, blocking, shot/camera design, video prompt compilation, preflight and targeted repair.
 
-## 当前状态
+**This public edition runs directly inside Claude. It does not require the private `asent1-core` repository, a remote MCP server, or a separate hosted service.**
 
-- Public gateway: `asent1`
-- Core runtime: separate private repository / hosted service
-- Remote MCP endpoint: **尚未部署**
-- 免费使用：目标产品政策；实际开放前会公布额度与服务状态
+## Public repository
 
-> 重要：目前仓库提供的是接入入口，不代表远程服务已经上线。未配置有效 MCP endpoint 时，Skill 必须明确报告“服务尚未连接”，不得假装调用成功。
+`https://github.com/tonysen777/asent1`
 
-## Claude Managed Agents 接入
+## Use with Claude Managed Agents
 
-1. 将本仓库作为 GitHub repository resource 挂载到 Managed Agents Session，以发现 `.claude/skills/asent1-video-production/SKILL.md`。
-2. 在 Agent 配置中注册 AsenT1 远程 MCP server。
-3. 在 Session 的 Vault 中配置服务端要求的认证信息。
-4. 新建 Session 后，Agent 才会读取该次挂载的仓库版本。
+Mount this public GitHub repository as a `github_repository` resource when creating a Managed Agents Session:
 
-MCP endpoint 尚未发布，示例配置见 [`docs/managed-agents.md`](docs/managed-agents.md)。
+- Repository: `https://github.com/tonysen777/asent1`
+- Branch: `main`
+- Mount path: `/workspace/asent1`
+- Skill entry: `.claude/skills/asent1-video-production/SKILL.md`
 
-## 设计边界
+Managed Agents scans the repository root `.claude/skills/` directory at Session startup. It discovers each Skill at `.claude/skills/<skill-name>/SKILL.md`; no separate MCP server or entry in the Agent's `skills` array is required. The Agent's `read` tool must be enabled (enabled by default).
 
-- SSS1 是独立项目，AsenT1 不替代、不合并 SSS1。
-- AsenT1 的历史来源是原 KSR 项目；历史仓库保留，不作为公开运行入口。
-- 本仓库不提供私有核心文件的下载入口。
-- 用户只通过远程 MCP 工具使用服务；核心规则由服务端管理。
+For a public repository, Anthropic's GitHub repository resource example uses a GitHub token with public-repository read access. Keep that token in your own secret store; never commit it here.
 
-## 远程工具
+Start a new Session after a repository update because Skill discovery runs at Session startup and does not refresh a running Session.
 
-工具契约见 [`docs/mcp-tools.md`](docs/mcp-tools.md)。服务端部署完成前，工具调用不可用。
+Official Anthropic documentation:
+- [Managed Agents — Skills](https://platform.claude.com/docs/en/managed-agents/skills)
+- [Managed Agents — GitHub access](https://platform.claude.com/docs/en/managed-agents/github)
+- [Claude Cookbook — Skills from a GitHub repository](https://platform.claude.com/cookbook/managed-agents-cma-use-skills-from-a-repo)
 
-## 反馈
+## Workflow
 
-欢迎提交文档问题、安装问题和不含内部规则的使用反馈。不要提交第三方课程、付费 Skill 原文、私人剧本、API Key 或任何未经授权的材料。
+1. **Production reading:** identify source facts, events, dialogue, character and prop states, space, continuity, unknowns and conflicts.
+2. **Director design:** analyze dramatic beats, audience information, performance, rhythm, blocking, shot function, camera, light and sound.
+3. **Prompt compilation:** compile the approved design into complete, self-contained video-generation Units.
+4. **Preflight:** check source fidelity, identity, spatial logic, axis, action causality, camera, light, sound and continuity.
+5. **Targeted repair:** change the smallest variable responsible for a failed result while preserving dimensions that already work.
+
+The Skill does not compile a final prompt before the user asks for it or approves the director design.
+
+## Project separation
+
+SSS1 remains a separate project. AsenT1 is the renamed continuation of the former KSR project; they are not merged.
+
+## Public content and provenance
+
+This repository contains a self-contained public Skill. It does not publish the former KSR source archive, private reference collections, raw tutorials, or unverified third-party materials. The public Skill describes an operational workflow and does not claim that private source files are remotely accessible.
+
+The repository license applies only to files in this public repository. It does not grant rights to third-party course material, Skills, tutorials or source archives. See [NOTICE.md](NOTICE.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
