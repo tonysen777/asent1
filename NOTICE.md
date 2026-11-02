@@ -1,9 +1,9 @@
 # Notice
 
-AsenT1 is an independent, community-oriented AI video production service maintained by Asen (GitHub: tonysen777).
+AsenT1 is a free, public AI-video directing Skill maintained by Asen (GitHub: tonysen777).
 
-This public repository contains only a thin client Skill and connection documentation. It does not contain the private AsenT1 core, private reference materials, source archives, or third-party Skills/tutorials.
+This repository contains a self-contained Skill for direct use in Claude Managed Agents through a mounted public GitHub repository. It does not require an AsenT1 MCP server or access to the private `asent1-core` repository.
 
-The public gateway does not imply that the remote service is already deployed. The MCP endpoint, authentication flow, usage limits, and privacy/retention terms must be published before public service launch.
+The public repository does not contain the former KSR source archive, private reference collections, raw tutorials, or unverified third-party materials. The repository license applies only to files in this repository and does not grant rights to third-party materials.
 
 SSS1 remains a separate project. AsenT1 is the renamed continuation of the former KSR project; no merger with SSS1 is intended.
